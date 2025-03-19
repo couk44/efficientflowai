@@ -1,0 +1,251 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.8; filter: brightness(1); }
+  50% { opacity: 1; filter: brightness(1.2); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes matrix-rain {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+@keyframes grid-flow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+.bg-gradient {
+  background: radial-gradient(circle at center, #000B1F 0%, #000000 100%);
+  position: relative;
+}
+
+.bg-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 60, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 60, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-flow 20s linear infinite;
+  mask-image: radial-gradient(circle at center, transparent 0%, black 100%);
+}
+
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.matrix-rain {
+  position: absolute;
+  color: #0f0;
+  font-family: monospace;
+  font-size: 14px;
+  text-shadow: 0 0 5px #0f0;
+  animation: matrix-rain 2s linear infinite;
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+               0 0 20px rgba(255, 255, 255, 0.4),
+               0 0 30px rgba(66, 153, 225, 0.4),
+               0 0 40px rgba(66, 153, 225, 0.2);
+  background: linear-gradient(120deg, #fff, #88ccff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.neon-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+.neon-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 0.5rem;
+  background: linear-gradient(45deg, #00ffff, #ff4ecd, #0066ff);
+  z-index: -1;
+  animation: glow 3s linear infinite;
+}
+
+.neon-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.neon-button:active {
+  transform: translateY(1px);
+}
+
+.service-card {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.service-card:hover::before {
+  transform: translateX(100%);
+}
+
+.testimonial-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffff, #ff4ecd, #0066ff);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover::after {
+  transform: scaleX(1);
+}
+
+.step-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.step-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+}
+
+.step-card:hover {
+  transform: translateY(-3px);
+}
+
+.step-card:last-child::after {
+  display: none;
+}
+
+.form-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.form-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.tech-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ffff, #ff4ecd, #0066ff);
+  z-index: -1;
+  animation: rotate 3s linear infinite;
+}
+
+.matrix-text {
+  font-family: 'Courier New', monospace;
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: grid-flow 20s linear infinite;
+}
+
+.data-flow {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-flow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  animation: grid-flow 2s linear infinite;
+}
